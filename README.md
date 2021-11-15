@@ -1,7 +1,8 @@
 # JoanKouloumba_6_14072021
 
 OCR - Parcours developpeur web - P6 - piiquante
-objectif du projet : construire une API REST sécurisée pour une application d'avis gastronomique
+
+#objectif du projet : construire une API REST sécurisée pour une application d'avis gastronomique
 
 #Repository GitHub
 
