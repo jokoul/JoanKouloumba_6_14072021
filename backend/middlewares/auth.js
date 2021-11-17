@@ -21,7 +21,7 @@ module.exports = (req, res, next) => {
       next();
     }
   } catch {
-    //Erreur d'authentification (code 401)
+    //Erreur d'authentification (code 401).
     res.status(401).json({ error: new Error("Requête non authentifiée !") });
   }
 };

@@ -21,7 +21,7 @@ const userRoutes = require("./routes/user");
 //Importation du routeur "sauceRoutes".
 const sauceRoutes = require("./routes/sauce");
 
-//Importation du package mongoose qui facilite la manipulation de la base de donné mongoDB.
+//Importation du package "mongoose" qui facilite la manipulation de la base de donné mongoDB.
 const mongoose = require("mongoose");
 
 //Connexion à la base de donnée mongoDB.
@@ -58,14 +58,14 @@ app.use((req, res, next) => {
 });
 
 //Définitions des middlewares de routing :
-//middleware de réponse aux requêtes de la route "/image".
+//middleware de réponse aux requêtes de la route "/image". Il sert le dossier "images".
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 //middleware de réponse aux requêtes de la route racine "/api/auth".
 app.use("/api/auth", userRoutes);
 
 //middleware de réponse aux requêtes de la route racine "/api/sauces".
-//app.use("/api/sauces", sauceRoutes);
+app.use("/api/sauces", sauceRoutes);
 
 //Exportation de l'application "app.js" pour le rendre disponible dans le dossier backend.
 module.exports = app;

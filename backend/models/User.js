@@ -4,7 +4,7 @@ l'écriture et la lecture de donné dans la base de donné MongoDB. */
 //Importation du package "mongoose".
 const mongoose = require("mongoose");
 
-/*Importation du package "mongoose-unique-validator" qui empêche plusieurs utilisateurs 
+/*Importation du package "mongoose-unique-validator" qui empêche plusieurs utilisateurs.
 de se connecter avec le même adresse email.*/
 const uniqueValidator = require("mongoose-unique-validator");
 
@@ -17,5 +17,5 @@ const userSchema = mongoose.Schema({
 //Attribution du plugin "uniqueValidator" à notre modèle "user".
 userSchema.plugin(uniqueValidator);
 
-//Exportation du modèle "user"
+//Exportation du modèle "user".
 module.exports = mongoose.model("User", userSchema);
