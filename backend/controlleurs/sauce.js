@@ -74,7 +74,7 @@ exports.deleteSauce = (req, res, next) => {
       //Extraction du nom du fichier image à supprimer.
       const filename = sauce.imageUrl.split("/images/")[1];
       //Suppression de la ressource "sauce" et du fichier image associé.
-      fs.unlink(`/images/${filename}`, () => {
+      fs.unlink(`images/${filename}`, () => {
         Sauce.deleteOne({ _id: req.params.id })
           .then(() => res.status(200).json({ message: "Sauce supprimée !" }))
           .catch((error) => res.status(400).json({ error }));
@@ -88,14 +88,63 @@ exports.modifyLikeSauce = (req, res, next) => {
   const like = req.body.like;
   const userId = req.body.userId;
 
-  //Cas où like = 1
+  //Si like == 1 alors on incrémente le champ "likes" de +1 et on rajoute "userId" au tableau "usersLiked"
   if (like == 1) {
-    Sauce.updateOne({ _id: req.params.id }).then().catch();
+    Sauce.updateOne(
+      { _id: req.params.id },
+      {
+        $inc: { likes: +1 },
+        $push: { usersLiked: userId },
+      }
+    )
+      .then(() => res.status(200).json({ message: "likes ajoutée !" }))
+      .catch((error) => res.status(400).json({ error }));
   }
-  //Cas où like = 0
-  if (like == 0) {
-  }
-  //Cas où like = -1
+
+  //Si like == -1 alors on incrémente le champ "dislikes" de +1 et on rajoute "userId" au tableau "usersLiked"
   if (like == -1) {
+    Sauce.updateOne(
+      { _id: req.params.id },
+      {
+        $inc: { dislikes: +1 },
+        $push: { usersDisliked: userId },
+      }
+    )
+      .then(() => res.status(200).json({ message: "dislikes ajoutée !" }))
+      .catch((error) => res.status(400).json({ error }));
+  }
+
+  //Si Like == 0, le "likes" ou "dislikes" de l'utilisateur est annulé et son userId retiré du tableau correspondant
+  if (like == 0) {
+    Sauce.findOne({ _id: req.params.id })
+      .then((sauce) => {
+        //Si "userId" est inclus dans le tableau "usersLiked"
+        if (sauce.usersLiked.includes(userId)) {
+          //on retire son "like" du champs "likes" et son "userId" du tableau "usersLiked"
+          Sauce.updateOne(
+            { _id: req.params.id },
+            {
+              $inc: { likes: -1 },
+              $pull: { usersLiked: userId },
+            }
+          )
+            .then(() => res.status(200).json({ message: "likes retiré !" }))
+            .catch((error) => res.status(400).json({ error }));
+        }
+        //Si "userId" est inclus dans le tableau "usersDisliked"
+        if (sauce.usersDisliked.includes(userId)) {
+          //on retire son "like" du champs "dislikes" et son "userId" du tableau "usersDisliked"
+          Sauce.updateOne(
+            { _id: req.params.id },
+            {
+              $inc: { dislikes: -1 },
+              $pull: { usersDisliked: userId },
+            }
+          )
+            .then(() => res.status(200).json({ message: "dislikes retiré !" }))
+            .catch((error) => res.status(400).json({ error }));
+        }
+      })
+      .catch((error) => res.status(400).json({ error }));
   }
 };
