@@ -4,14 +4,15 @@ OCR - Parcours developpeur web - P6 - piiquante
 
 #objectif du projet : construire une API REST sécurisée pour une application d'avis gastronomique
 
-#Repository GitHub
+#Installation et lancement de l'application
 
 1. Clonez le repository
 2. Ouvrez un terminal (Linux/Mac) ou une invite de commande/PowerShell
    (Windows) dans l'IDE (Moi : Vscode).
 3. lancer l'aplication frontend en lisant le fichier README dans le dossier frontend : Exécutez "npm install" à partir du répertoire frontend puis "npm start"
-4. Lancer l'API backend en lisant le fichier README dans le dossier backend : Exécutez "npm install" à partir du répertoire backend puis "nodemon server"
-5. Exécutez le back-end sur http://localhost:3000 seulement.
+4. Lancer l'API backend en lisant le fichier README dans le dossier backend : Exécutez "npm install" à partir du répertoire backend puis créer un dossier "images" dans le répertoire backend en faisant : "mkdir images". Enfin lancer le server avec "nodemon server"
+5. le back-end s'execute sur http://localhost:3000.
+6. le front-end s'execute sur http://localhost:8080.
 
 #cahier des charges :
 
