@@ -20,11 +20,12 @@ const storage = multer.diskStorage({
   //on indique à "multer" le nom du fichier à utiliser.
   filename: (req, file, callback) => {
     //création d'un nouveau nom de fichier à partir du nom d'origine.
-    const name = file.originalname.split(" ").join("_");
+    const name = file.originalname.split(".")[0];
+    const newName = name.split(" ").join("_");
     //génération de l'extension à partir du mimetype du fichier.
     const extension = MIME_TYPES[file.mimetype];
     //appelle du callback avec le nouveau nom en second argument.
-    callback(null, name + Date.now() + "." + extension);
+    callback(null, newName + "_" + Date.now() + "." + extension);
   },
 });
 
