@@ -12,7 +12,7 @@ OCR - Parcours developpeur web - P6 - piiquante
 3. lancer l'aplication frontend en lisant le fichier README dans le dossier frontend : Exécutez "npm install" à partir du répertoire frontend puis "npm start"
 4. Lancer l'API backend en lisant le fichier README dans le dossier backend : Exécutez "npm install" à partir du répertoire backend puis créer un dossier "images" dans le répertoire backend en faisant : "mkdir images". Enfin lancer le server avec "nodemon server"
 5. le back-end s'execute sur http://localhost:3000.
-6. le front-end s'execute sur http://localhost:8080.
+6. le front-end s'execute sur http://localhost:8081.
 
 #cahier des charges :
 
