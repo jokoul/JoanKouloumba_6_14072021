@@ -27,7 +27,7 @@ const mongoose = require("mongoose");
 //Connexion à la base de donnée mongoDB.
 mongoose
   .connect(
-    "mongodb+srv://Joank:joankoul1990@cluster0.2wqme.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb+srv://Joank:hssU6VB7y7VhUnFS@cluster0.2wqme.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
