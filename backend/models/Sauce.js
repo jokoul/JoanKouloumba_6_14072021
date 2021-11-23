@@ -9,22 +9,22 @@ const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },
   name: {
     type: String,
-    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'-]+$/,
+    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'_-]+$/,
     required: true,
   },
   manufacturer: {
     type: String,
-    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'-]+$/,
+    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'_-]+$/,
     required: true,
   },
   description: {
     type: String,
-    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'-]+$/,
+    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'_-]+$/,
     required: true,
   },
   mainPepper: {
     type: String,
-    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'-]+$/,
+    match: /^[a-zA-Z0-9 éèêâäçûüîïôö'_-]+$/,
     required: true,
   },
   imageUrl: { type: String, required: true },
