@@ -15,6 +15,9 @@ const helmet = require("helmet");
 //Importation du package "path" qui donne accès au chemin du système de fichier server.
 const path = require("path");
 
+//Importation du package "dotenv" qui permet de gérer et manipluler les variables d'environnements.
+const dotenv = require("dotenv");
+
 //Importation du routeur "userRoutes".
 const userRoutes = require("./routes/user");
 
@@ -24,10 +27,13 @@ const sauceRoutes = require("./routes/sauce");
 //Importation du package "mongoose" qui facilite la manipulation de la base de donné mongoDB.
 const mongoose = require("mongoose");
 
+//Chargement des variables d'environnement déclarée dans le fichier ".env".
+dotenv.config();
+
 //Connexion à la base de donnée mongoDB.
 mongoose
   .connect(
-    "mongodb+srv://Joank:hssU6VB7y7VhUnFS@cluster0.2wqme.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}/myFirstDatabase?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -40,7 +46,7 @@ mongoose
 //middleware de transformation des donnés JSON de la requête en objet javascript exploitable.
 app.use(bodyParser.json());
 
-//Sécurisation de l'application via l'inclusion d'en-tête configurée.
+//Sécurisation de l'application via l'inclusion d'en-tête configurée (ex: Content-Security-Policy, X-XSS-Protection, X-DNS-Prefetch-Control, Strict-Transport-Security)
 app.use(helmet());
 
 //middleware d'ajout des headers pour lever les restrictions de sécurité CORS.

@@ -9,6 +9,12 @@ const jwt = require("jsonwebtoken");
 //Importation du package "bcrypt" pour crypter et lire les mots de passe.
 const bcrypt = require("bcrypt");
 
+//Importation et chargement du package "dotenv" qui permet de gérer et manipuler les variables d'environnements.
+require("dotenv").config();
+
+//Récupération de la variable d'environnement de la clé secrète du token.
+const secretKey = process.env.TOKEN_SECRET_KEY;
+
 //Exportation de la fonction "signup" qui permet la création de nouveau compte utilisateur.
 exports.signup = (req, res, next) => {
   bcrypt
@@ -50,7 +56,7 @@ exports.login = (req, res, next) => {
           res.status(200).json({
             //Attribution d'un token.
             userId: user._id,
-            token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
+            token: jwt.sign({ userId: user._id }, `${secretKey}`, {
               expiresIn: "24h",
             }),
           });

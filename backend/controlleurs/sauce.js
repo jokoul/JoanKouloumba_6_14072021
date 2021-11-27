@@ -57,13 +57,13 @@ exports.modifySauce = (req, res, next) => {
         }`,
       }
     : { ...req.body };
-  //On modifie la sauce en vérifiant que l'identifiant de la base et de la requête correspondent.
+  //On modifie la sauce en vérifiant que l'identifiant de la base et de la requête correspondent pour la sauce et l'utilisateur.
   Sauce.updateOne(
-    { _id: req.params.id },
+    { _id: req.params.id, userId: req.body.userId },
     { ...sauceObject, _id: req.params.id }
   )
     .then(() => res.status(200).json({ message: "Sauce modifiée !" }))
-    .catch((error) => res.status(400).json({ error }));
+    .catch((error) => res.status(403).json({ error }));
 };
 
 //Exportation de la fonction callback "deleteSauce".
