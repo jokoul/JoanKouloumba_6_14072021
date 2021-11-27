@@ -19,7 +19,10 @@ module.exports = (req, res, next) => {
     const decodedToken = jwt.verify(token, `${secretKey}`);
     //Extraction du "userId" dans le token décodé.
     const userId = decodedToken.userId;
-    //Si le "userId" de la requête et du token ne correspondent pas.
+    /*Si le "userId" de la requête et du token ne correspondent pas alors la requête est "non autorisée". 
+    ATTENTION : On compare bien deux userId différent, le userId envoyé dans le CORPS de la requête par le frontend avec le userId contenu dans le token qui est situé dans l'En-tête de la requête. 
+    Or le userId dans le token provient de la base de donné, il est encodé dans le token lors de la création de celle-ci. 
+    Et le token est crée dans le contrôleur "login" avec la méthode sign() après récupération d'une ressource "user" dans la base de donnée.*/
     if (req.body.userId && req.body.userId !== userId) {
       throw "User ID invalide !";
     } else {
