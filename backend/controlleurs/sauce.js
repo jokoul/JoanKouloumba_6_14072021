@@ -59,7 +59,7 @@ exports.modifySauce = (req, res, next) => {
     : { ...req.body };
   //On modifie la sauce en vérifiant que l'identifiant de la base et de la requête correspondent pour la sauce et l'utilisateur.
   Sauce.updateOne(
-    { _id: req.params.id, userId: req.body.userId },
+    { _id: req.params.id, userId: sauceObject.userId },
     { ...sauceObject, _id: req.params.id, userId: req.body.userId }
   )
     .then(() => res.status(200).json({ message: "Sauce modifiée !" }))
