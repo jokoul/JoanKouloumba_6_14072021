@@ -1,4 +1,4 @@
-# JoanKouloumba_6_14072021
+# Projet 6 : Construire une API sécurisée pour une application web
 
 OCR - Parcours developpeur web - P6 - piiquante
 
